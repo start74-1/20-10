@@ -1,20 +1,151 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>20/10 💐</title>
-  <link rel="stylesheet" href="./style/style.css">
-</head>
-<body>
-  <h1>💐 20/10 Dành cho mẹ Thái 💕</h1>
-  <p id="message">Chúc mẹ Thái luôn khỏe mạnh và hạnh phúc 🌸</p>
+<!-- ⚠️ OH NO KK-->
+<div id="security-alert">
+  <video autoplay muted loop playsinline preload="auto" id="bg-video">
+    <source src="https://raw.githubusercontent.com/oibog/obi74z/main/video.mp4" type="video/mp4">
+  </video>
 
-  <div id="soundToggle">🔇</div>
-  <audio id="bgm" loop>
-    <source src="style/nhac.mp3" type="audio/mpeg" />
-  </audio>
+  <div class="alert-content">
+    <h1>IAM OBI</h1>
+    <p>Name: obi - Age: 15</p>
+    <p id="typewriter" class="tap-msg"></p>
+    <p class="tap-msg sound-hint">iam obi</p>
+  </div>
+</div>
 
-  <script src="./style/script.js"></script>
-</body>
-</html>
+<style>
+  #security-alert {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+    overflow: hidden;
+    background: black;
+  }
+
+  #bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(0.3);
+  }
+
+  #security-alert .alert-content {
+    text-align: center;
+    color: red;
+    font-family: "Courier New", monospace;
+    animation: shake 6s infinite;
+    padding: 20px;
+    z-index: 1;
+  }
+
+  #security-alert h1 {
+    font-size: 48px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+  }
+
+  #security-alert p {
+    font-size: 20px;
+    color: white;
+    margin-top: 5px;
+  }
+
+  .tap-msg {
+    font-size: 22px;
+    color: #aaa;
+    margin-top: 12px;
+    white-space: pre;
+  }
+
+  .sound-hint {
+    font-size: 16px;
+    color: #bbb;
+    margin-top: 8px;
+  }
+
+  /* Con trỏ nhấp nháy */
+  #typewriter::after {
+    content: "|";
+    display: inline-block;
+    animation: blink 0.8s infinite;
+    color: #ff4444;
+    margin-left: 2px;
+  }
+
+  @keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes shake {
+    0% { transform: translate(0,0); }
+    10% { transform: translate(-5px, 3px); }
+    20% { transform: translate(4px, -2px); }
+    30% { transform: translate(-3px, 1px); }
+    40% { transform: translate(2px, -1px); }
+    50% { transform: translate(0,0); }
+    100% { transform: translate(0,0); }
+  }
+</style>
+
+<script>
+  const video = document.getElementById('bg-video');
+
+  // Khi nhấn vào màn hình → bật âm thanh
+  function enableSound() {
+    video.muted = false;
+    video.currentTime = 0;
+    video.play();
+    document.querySelector('.sound-hint').style.display = 'none';
+    document.removeEventListener('click', enableSound);
+    document.removeEventListener('touchstart', enableSound);
+  }
+
+  document.addEventListener('click', enableSound);
+  document.addEventListener('touchstart', enableSound);
+
+  // Đảm bảo video chạy ngay khi load
+  video.addEventListener('loadeddata', () => {
+    video.play();
+  });
+
+  // Hiệu ứng đánh chữ + xoá + lặp vô hạn
+  const text = "DDOS - HACK - CHEAT - MOD - TOOL - CRACK";
+  const typeTarget = document.getElementById("typewriter");
+  let i = 0;
+  let isDeleting = false;
+
+  function typeLoop() {
+    if (!isDeleting && i < text.length) {
+      typeTarget.textContent += text.charAt(i);
+      i++;
+      setTimeout(typeLoop, 100); // tốc độ gõ
+    } else if (!isDeleting && i === text.length) {
+      // Đợi 3s rồi bắt đầu xoá
+      setTimeout(() => {
+        isDeleting = true;
+        typeLoop();
+      }, 3000);
+    } else if (isDeleting && i > 0) {
+      typeTarget.textContent = text.substring(0, i - 1);
+      i--;
+      setTimeout(typeLoop, 80); // tốc độ xoá
+    } else if (isDeleting && i === 0) {
+      // Bắt đầu lại vòng lặp
+      isDeleting = false;
+      setTimeout(typeLoop, 1000);
+    }
+  }
+
+  window.addEventListener('load', () => {
+    typeLoop();
+  });
+</script>
