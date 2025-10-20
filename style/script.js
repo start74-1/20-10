@@ -6,7 +6,7 @@ window.addEventListener('load', () => {
         "Con yêu mẹ rất nhiều — mong mỗi ngày của mẹ đều tràn ngập niềm vui và bình an 🌷",
         "Mong sao mẹ luôn bình an, hạnh phúc và khoẻ mạnh 🌼",
         "20/10 là ngày đặc biệt, nhưng với con, mỗi ngày đều là ngày của mẹ 💫",
-        "Con chúc mẹ Thái có một ngày 20/11 vui vẻ"
+        "Con chúc mẹ Thái có một ngày 20/10 vui vẻ"
     ];
 
     const msgEl = document.getElementById('message');
@@ -80,3 +80,4 @@ window.addEventListener('load', () => {
         }
     });
 });
+
